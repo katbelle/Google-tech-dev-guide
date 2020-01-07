@@ -12,7 +12,6 @@ const compress_str = (str_val) => {
         if (list_of_nums.includes(letter)) {
             multiplier += letter; 
         } else if (letter === '[') {
-            pass;
         } else if (!(list_of_nums.includes(letter)) && letter != ']') {
             if (my_str[i-1] === ']') {
                 final_str += letter;
@@ -21,14 +20,20 @@ const compress_str = (str_val) => {
                 str_to_be_multiplied += letter;
             }
         } else if (letter === ']') {
-            let answer = str_to_be_multiplied * parseInt(multiplier);
+            let answer = str_to_be_multiplied.repeat(multiplier);
             final_str += answer;
             multiplier = "";
             str_to_be_multiplied = "";
-        }
+        } else {
+            final_str += letter;
+        } 
+    }
+    
+    console.log(final_str);
+    return final_str;
 
 
 };
 
 // logs final answer
-console.log(compress_str(my_str));
+compress_str(my_str);
